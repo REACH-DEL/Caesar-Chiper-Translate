@@ -29,7 +29,7 @@ text.on("input", function(){
             for (var i = 0; i < inputValue.length; i++){
                 var currentChar = inputValue[i];
                 if (letters.includes(currentChar.toLowerCase())) { 
-                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) + n) % 26;
+                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) - n + 26) % 26;
                     if (currentChar.toUpperCase() === currentChar) { 
                         outputText += letters[newIndex].toUpperCase(); 
                     } else {
@@ -44,7 +44,7 @@ text.on("input", function(){
             for (var i = 0; i < inputValue.length; i++){
                 var currentChar = inputValue[i];
                 if (letters.includes(currentChar.toLowerCase())) {
-                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) - n + 26) % 26;
+                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) + n) % 26;
                     if (currentChar.toUpperCase() === currentChar) {
                         outputText += letters[newIndex].toUpperCase();
                     } else {

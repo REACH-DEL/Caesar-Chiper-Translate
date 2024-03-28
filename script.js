@@ -7,6 +7,12 @@ var switchButton = $(".switch button");
 var startButton = $(".start button");
 var text = $(".input textarea");
 var output = $(".output p");
+var n;
+var select = $(".option select")
+var option = $(".option .select option");
+select.on("change", function(){
+    n = parseInt($(this).val());
+})
 switchButton.on("click", function Switch(){
     title1.text(title2text);
     title2.text(title1text);
@@ -22,36 +28,37 @@ text.on("input", function(){
         if (title1text === "Caesar Cipher to Normal text" && title2text === "Normal text to Caesar Cipher"){
             for (var i = 0; i < inputValue.length; i++){
                 var currentChar = inputValue[i];
-                if (currentChar === " ") {
-                    outputText += " "; // Add space to output if input has a space
-                } else {
-                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) + 3) % 26;
-                    if (currentChar.toUpperCase() === currentChar) { // Check if character is uppercase
-                        outputText += letters[newIndex].toUpperCase(); // Append uppercase version of the character
+                if (letters.includes(currentChar.toLowerCase())) { 
+                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) + n) % 26;
+                    if (currentChar.toUpperCase() === currentChar) { 
+                        outputText += letters[newIndex].toUpperCase(); 
                     } else {
-                        outputText += letters[newIndex]; // Append lowercase version of the character
+                        outputText += letters[newIndex]; 
                     }
+                } else {
+                    outputText += currentChar; 
                 }
             }
         }
         else if (title2text === "Caesar Cipher to Normal text" && title1text === "Normal text to Caesar Cipher"){
             for (var i = 0; i < inputValue.length; i++){
                 var currentChar = inputValue[i];
-                if (currentChar === " ") {
-                    outputText += " "; // Add space to output if input has a space
-                } else {
-                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) - 3 + 26) % 26;
-                    if (currentChar.toUpperCase() === currentChar) { // Check if character is uppercase
-                        outputText += letters[newIndex].toUpperCase(); // Append uppercase version of the character
+                if (letters.includes(currentChar.toLowerCase())) {
+                    var newIndex = (letters.indexOf(currentChar.toLowerCase()) - n + 26) % 26;
+                    if (currentChar.toUpperCase() === currentChar) {
+                        outputText += letters[newIndex].toUpperCase();
                     } else {
-                        outputText += letters[newIndex]; // Append lowercase version of the character
+                        outputText += letters[newIndex]; 
                     }
+                } else {
+                    outputText += currentChar; 
                 }
             }
         }
         
-        output.text(outputText); // Update output after the loop
+        output.text(outputText); 
     });
+
 });
 
 
